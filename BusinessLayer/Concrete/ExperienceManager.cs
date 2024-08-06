@@ -20,17 +20,17 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Experience t)
         {
-            throw new NotImplementedException();
+            _experiencedal.Insert(t);
         }
 
         public void TDelete(Experience t)
         {
-            throw new NotImplementedException();
+            _experiencedal.Delete(t);
         }
 
         public Experience TGetByID(int id)
         {
-            throw new NotImplementedException();
+           return _experiencedal.GetByID(id);
         }
 
         public List<Experience> TGetList()
@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public void TUpdate(Experience t)
         {
-            throw new NotImplementedException();
+            _experiencedal.Update(t);
         }
     }
 }

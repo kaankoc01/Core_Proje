@@ -8,7 +8,7 @@
     <h3 class="mb-0">Yetenek Düzenleme Sayfası</h3>
 </div>
 
-@using (Html.BeginForm("EditSkill,Skill,FormMethod.Post"))
+@using (Html.BeginForm("EditSkill","Skill",FormMethod.Post))
 {
     @Html.HiddenFor(x => x.SkillId)
      <br />
