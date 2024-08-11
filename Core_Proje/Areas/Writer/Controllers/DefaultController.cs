@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Areas.Writer.Controllers
@@ -7,10 +10,17 @@ namespace Core_Proje.Areas.Writer.Controllers
     [Authorize]
     public class DefaultController : Controller
     {
-        
+        AnnouncementManager AnnouncementManager = new AnnouncementManager(new EfAnnouncementDal());
         public IActionResult Index()
         {
-            return View();
+            var values = AnnouncementManager.TGetList();
+            return View(values);
+        }
+        [HttpGet]
+        public IActionResult AnnouncementManagerDetails(int id)
+        {
+            Announcement announcement = AnnouncementManager.TGetByID(id);
+            return View(announcement);
         }
     }
 }

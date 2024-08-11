@@ -122,6 +122,7 @@
   <ItemGroup>
     <Folder Include="Areas\Writer\Data\" />
     <Folder Include="Views\Shared\Partial\" />
+    <Folder Include="wwwroot\userimage\" />
   </ItemGroup>
 
 </Project>
