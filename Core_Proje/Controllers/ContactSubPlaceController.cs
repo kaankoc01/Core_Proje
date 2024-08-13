@@ -5,20 +5,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Controllers
 {
-    public class AboutController : Controller
+    public class ContactSubPlaceController : Controller
     {
-        AboutManager aboutManager = new AboutManager(new EfAboutDal());
+        ContactManager contactManager = new ContactManager(new EfContactDal());
         [HttpGet]
         public IActionResult Index()
         {
-            var values = aboutManager.TGetByID(1);
+            var values = contactManager.TGetByID(1);
             return View(values);
         }
 
         [HttpPost]
-        public IActionResult Index(About about)
+        public IActionResult Index(Contact contact)
         {
-            aboutManager.TUpdate(about);
+            contactManager.TUpdate(contact);
             return RedirectToAction("Index", "Default");
         }
     }
