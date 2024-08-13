@@ -22,8 +22,8 @@ namespace Core_Proje.Controllers
         [HttpPost]
         public IActionResult AddSocialMedia(SocialMedia p)
         {
+            p.Status = true;
             socialMediaManager.TAdd(p);
-
             return RedirectToAction("Index");
 
         }
