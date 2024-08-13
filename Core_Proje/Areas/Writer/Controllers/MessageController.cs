@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace Core_Proje.Areas.Writer.Controllers
 {
     [Area("Writer")]
+    [Route("Writer/Message")]
     public class MessageController : Controller
     {
 
@@ -22,6 +23,8 @@ namespace Core_Proje.Areas.Writer.Controllers
             _userManager = userManager;
         }
 
+        [Route("")]
+        [Route("ReceiverMessage")]
         public async Task<IActionResult> ReceiverMessage(string p)
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -30,6 +33,8 @@ namespace Core_Proje.Areas.Writer.Controllers
             return View(messageList);
         }
 
+        [Route("")]
+        [Route("SenderMessage")]
         public async Task<IActionResult> SenderMessage(string p)
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -37,23 +42,28 @@ namespace Core_Proje.Areas.Writer.Controllers
             var messageList = writerMessageManager.GetListSenderMessage(p);
             return View(messageList);
         }
-
+        [Route("MessageDetails/{id}")]
         public IActionResult MessageDetails(int id)
         {
             WriterMessage writerMessage = writerMessageManager.TGetByID(id);
             return View(writerMessage);
         }
+        [Route("ReceiverMessageDetails/{id}")]
         public IActionResult ReceiverMessageDetails(int id)
         {
             WriterMessage writerMessage = writerMessageManager.TGetByID(id);
             return View(writerMessage);
         }
         [HttpGet]
+        [Route("")]
+        [Route("SendMessage")]
         public IActionResult SendMessage()
         {
             return View();
         }
         [HttpPost]
+        [Route("")]
+        [Route("SendMessage")]
         public  async Task <IActionResult> SendMessage(WriterMessage p)
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -66,7 +76,7 @@ namespace Core_Proje.Areas.Writer.Controllers
             var usernamesurname = c.Users.Where(x => x.Email == p.Receiver).Select(y => y.Name + " " + y.Surname).FirstOrDefault();
             p.ReceiverName = usernamesurname;
             writerMessageManager.TAdd(p);
-            return RedirectToAction("SenderMessage", "Message");
-        }
+            return RedirectToAction("SenderMessage");
+        } 
     }
 }
