@@ -2,9 +2,13 @@
 
 namespace Core_Proje.Controllers
 {
-    public class DashboardController : Controller
+    public class ErrorPageController : Controller
     {
         public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult Error404()
         {
             return View();
         }
