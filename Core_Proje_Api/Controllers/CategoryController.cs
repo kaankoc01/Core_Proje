@@ -65,6 +65,7 @@ namespace Core_Proje_Api.Controllers
             {
 
                 return NotFound();
+
             }
             else
             {
